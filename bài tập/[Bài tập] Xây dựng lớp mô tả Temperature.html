@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let doC = function(temp) {
+        this.temp=temp;
+
+        this.doF = function() {
+            return (temp*1.8)+32;
+        }
+
+        this.doKa = function() {
+            return temp+273.15;
+        }
+    };
+    // let doc = new Doc(25);
+    // let dof = doc.doF(); //Result doF
+    // let doka = doc.doKa(); //Result doKa
+    // document.write(`${dof} , ${doka}`);
+    function main() {
+        do {
+            a=parseFloat(prompt("nhap a")); 
+        } while(isNaN(a) || a=='' || a<-273);
+        let chuyendoi = new doC(a);
+        let dof=chuyendoi.doF();
+        let doka=chuyendoi.doKa();
+        document.write(`${dof} , ${doka}`);
+    }
+    main();
+
+   
+
+
+
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="200" height="100" style="border:4px solid black;"></canvas>
+    <script>
+        let Hinhchunhat = function (cd, cr) {
+            this.cd = cd;
+            this.cr = cr;
+
+            this.getcd = function () {
+                return this.cd;
+            }
+            this.getcr = function () {
+                return this.cr;
+            }
+            this.getcv = function () {
+                return ((cd + cr) * 2);
+            }
+            this.getdt = function () {
+                return (cd * cr);
+            }
+        }
+        function main() {
+            let num1 = parseFloat(prompt("nhap chieu dai"));
+            let num2 = parseFloat(prompt("nhap chieu rong"));
+            let hinhchunhat = new Hinhchunhat(num1, num2);
+            let cd = hinhchunhat.getcd();
+            let cr = hinhchunhat.getcr();
+            let cv = hinhchunhat.getcv();
+            let dt = hinhchunhat.getdt();
+            document.write(`chu vi:${cv} , dien tich:${dt}`);
+            let c = document.getElementById("myCanvas");
+            let ctx = c.getContext("2d");
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(0, 0, cd, cr);
+            ctx.fillText(`Diện tích: ${dt}, chu vi: ${cv}`, 50, 50);
+            ctx.stroke();
+        }
+        main();
+
+
+    </script>
+</body>
+
+</html>
