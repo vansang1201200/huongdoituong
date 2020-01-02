@@ -29,14 +29,14 @@
             }
         }
         function main() {
-            let num1 = parseFloat(prompt("nhap chieu dai"));
-            let num2 = parseFloat(prompt("nhap chieu rong"));
+            let num1 = Math.round(Math.random()*100);
+            let num2 = Math.round(Math.random()*100);
             let hinhchunhat = new Hinhchunhat(num1, num2);
             let cd = hinhchunhat.getcd();
             let cr = hinhchunhat.getcr();
             let cv = hinhchunhat.getcv();
             let dt = hinhchunhat.getdt();
-            document.write(`chu vi:${cv} , dien tich:${dt}`);
+            //  document.write(`chu vi:${cv} , dien tich:${dt}`);
             let c = document.getElementById("myCanvas");
             let ctx = c.getContext("2d");
             ctx.fillStyle = "#FF0000";
