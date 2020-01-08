@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <h1> Ti Vi Nhà Em</h1>
+    <style>
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="tivi.js"></script>
+    <table>
+        <tr>
+            <td>nametivi</td>
+            <td id="nametv"></td>
+        </tr>
+        <tr>
+            <td>chanel</td>
+            <td id="chaneltv"></td>
+        </tr>
+        <tr>
+            <td>volum</td>
+            <td id="volumtv"></td>
+        </tr>
+        <tr>
+            <td>star</td>
+            <td id="starttv"></td>
+        </tr>
+    </table></br>
+    <table>
+        <tr>
+            <td>nameremote</td>
+            <td id="namerm"></td>
+        </tr>
+        <tr>
+            <td>chanelremotes</td>
+            <td>
+                <input type="button" value="0" onclick="remote(0)">
+                <input type="button" value="1" onclick="remote(1)">
+                <input type="button" value="2" onclick="remote(2)">
+                <input type="button" value="3" onclick="remote(3)">
+                <input type="button" value="4" onclick="remote(4)">
+                <input type="button" value="5" onclick="remote(5)">
+                <input type="button" value="6" onclick="remote(6)">
+                <input type="button" value="7" onclick="remote(7)">
+                <input type="button" value="8" onclick="remote(8)">
+                <input type="button" value="9" onclick="remote(9)">
+            </td>
+        </tr>
+        <tr>
+            <td>volumremote</td>
+            <td>
+                <input type="button" value="-" onclick="VolumeDown()">
+                <input type="button" value="+" onclick="VolumeUp()">
+            </td>
+        </tr>
+        <tr>
+            <td>stasremote</td>
+            <td>
+                <input type="button" value="OnOrOff" onclick="OnorOff()">
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+
+</html>

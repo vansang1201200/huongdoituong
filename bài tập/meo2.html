@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      [*Bài tập] Phát triển ứng dụng mô phỏng lại quá trình mèo bắt chuột và ăn
+      chuột.
+    </title>
+  </head>
+  <body>
+    <script>
+      let Animal = function(_name, _weight, _speed) {
+        this.name = _name;
+        this.weight = _weight;
+        this.speed = _speed;
+        this.status = true;
+        this.say = '';
+        this.free = true;
+        this.speak = function() {
+          // if (this.name.toLowerCase() === "cat" || this.name.toLowerCase() === "meo"){
+          //     this.say = "Meow meow";
+          //     return this.say;
+          // }
+          // if (this.name.toLowerCase() === "mouse" || this.name.toLowerCase() === "chuot"){
+          //     this.say = "Meow meow";
+          //     return this.say;
+          // }
+          if (this.status) {
+            return this.say;
+          } else {
+            return `Dead<br>`;
+          }
+        };
+        this.checkWeight = function() {
+          if (this.status) {
+            return this.weight;
+          } else {
+            return `R.I.P <br>`;
+          }
+        };
+        this.getWeight = function() {
+          return this.weight;
+        };
+        this.getSpeed = function() {
+          if (this.status) {
+            return this.speed;
+          } else {
+            return `${this.name} is Dead<br>`;
+          }
+        };
+      };
+      let mouse = new Animal('Jerry', 10, 20);
+      let cat = new Animal('Tom', 20, 10);
+      mouse.say = 'chrr chrr';
+      console.log(mouse.say);
+      cat.say = 'meow meow';
+      console.log(cat.say);
+      // cat.catch = function(){}
+      Animal.prototype.catch = function(_mouse) {
+        if (this.speed > _mouse.speed) {
+          _mouse.free = false;
+          document.write(`<br>Catched a mouse name ${_mouse.name}<br>`);
+          console.log(mouse.free);
+        } else {
+          document.write(`<br>Mouse ${_mouse.name} is too fast<br>`);
+        }
+      };
+      cat.catch(mouse);
+      cat.speed = 30;
+      cat.catch(mouse);
+      mouse.status = false;
+      cat.eat = function(_mouse) {
+        if (
+          this.status === true &&
+          _mouse.status === true &&
+          _mouse.free === false
+        ) {
+          this.weight++;
+          document.write(
+            `<br>Eaten a mouse name ${_mouse.name} and weight is ${this.weight}<br>`
+          );
+        } else if (
+          this.status === true &&
+          _mouse.status === false &&
+          _mouse.free === false
+        ) {
+          document.write(`<br>Not eat a dead mouse ${_mouse.name} <br>`);
+        }
+      };
+      cat.eat(mouse);
+      mouse.status = true;
+      console.log('mouse.status: ', mouse.status);
+      console.log('TCL: mouse.status', mouse.status);
+      cat.eat(mouse);
+    </script>
+  </body>
+</html>

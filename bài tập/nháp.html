@@ -1,95 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <script>
+  function Remote (name,code) {
+	this.code = code;
+	this.name = name;
+	this.connect = function(TV){
+		this.TV = TV;
+	}
+	this.onOffTv = function(){
+		if (this.TV.statusTV) {
+			this.TV.statusTV = false;
+			alert("TV Off");
+		} 
+		else {
+			this.TV.statusTV = true;
+			alert("TV On");
+		}
+		show();
+	}
+	this.remoteChannels = function(code){
+		this.TV.changeChannels(code);
+		show();
+	}
+	this.remoteVolume =function(num){
+		this.TV.changeVolume(num);
+		show();
+	}
+}
+function TV (name,channel,volume,statusTV){
+	this.channels = ["channel 01","channel 02","channel 03", "channel 04",
+					"channel 05","channel 06","channel 07", "channel 08"];
+	this.name = name;
+	this.channel = channel;
+	this.volume = volume;
+	this.statusTV = statusTV;
+	this.changeChannels = function(num){
+		for (var i = 0 ; i < this.channels.length; i++) {
+			if (num == i) {
+				this.channel = this.channels[num];
+			}
+		}
+	}
+	this.changeVolume = function(num){
+		if ((num >= 0) &&(num <= 100)) {
+			this.volume = num;
+		}
+		else {
+			alert("can not change volume");
+		}
+	}
+	this.status = function () {
+		if (this.statusTV) {
+			return "On"
+		}
+		else {
+			return "Off"
+		}
+	}
+}
+let tv = new TV("SamSung","", 21, false);
+let remote = new Remote("Remote",);
+remote.connect(tv);
+function show() {
+	document.getElementById("TV").innerHTML = tv.name;
+	document.getElementById("remoteName").innerHTML = remote.name;
+	document.getElementById("channelTV").innerHTML = tv.channel;
+	document.getElementById("volumeTV").innerHTML = tv.volume;
+	document.getElementById("statusTV").innerHTML = tv.status();
+}
+function volumeUp() {
+	tv.volume += 1;
+	show();
+}
+function volumeDown() {
+	tv.volume -= 1;
+	show();
+}  
+  </script>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    table{
+      width: 500px;
+    }
+  </style>
 </head>
-<body>
-    <p>Adam</p>
-    <button onclick="eatApple('adam')">Eat</button>
-    <p id="adamWeight"></p>
-    <hr />
-    <p>Eva</p>
-    <button onclick="eatApple('eva')">Eat</button>
-    <p id="EvaWeight"></p>
-    <script>
-        class Apple {
-            constructor(weight) {
-                this.weight = weight;
-            };
-            decrease() {
-                this.weight--;
-            };
-            isEmpty() {
-                return (this.weight === 0) ? true : false;
-            };
-            getWeight() {
-                return this.weight;
-            };
-        };
-        class Human {
-            constructor(name, gender, weight) {
-                this.name = name;
-                this.gender = gender;
-                this.weight = weight;
-            }
-            isMade() {
-                return this.weight
-            };
-            setGender(newGender) {
-                this.gender = newGender;
-            };
-            checkApple(apple) {
-                return apple.isEmpty();
-            };
-            eat(apple) {
-                apple.decrease();
-                this.weight += 5;
-            };
-            say(str) {
-                alert(this.name + " Say: " + str);
-            };
-            getName(str) {
-                this.name = str;
-            };
-            getWeight() {
-                return this.weight;
-            };
-            setWeight(newWeight) {
-                this.weight = newWeight;
-            };
-        };
-        let apple = new Apple(10);
-        let adam = new Human("Adam", true, 60);
-        let eva = new Human("Eva", false, 50);
-        function eatApple(name) {
-            if (name === "adam") {
-                console.log("Adam an mot mieng");
-                if (adam.checkApple(apple)) {
-                    adam.say("Adam an het tao ui");
-                    console.log("Can nang Adam: " + adam.getWeight());
-                } else {
-                    adam.eat(apple);
-                    console.log("Con:" + apple.getWeight());
-                    console.log("an tiep nao");
-                    console.log(adam.getWeight());
-                };
-            };
-            if (name === "eva") {
-                console.log("Eva an mot mieng");
-                if (eva.checkApple(apple)) {
-                    eva.say("Eva an het tao ui");
-                    console.log(eva.getWeight());
-                } else {
-                    eva.eat(apple);
-                    console.log("Con:" + apple.getWeight());
-                    console.log("an tiep nao");
-                    console.log("Can nang Eva: " + eva.getWeight());
-                };
-            };
-        };
-    </script>
+<body onload="show()">
+  <h2>Cat & Rat:</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th id="TV"></th>
+    </tr>
+    <tr>
+      <th>Channel</th>
+      <td id="channelTV"></td>
+    </tr>
+    <tr>
+      <th>Volume</th>
+      <td id="volumeTV"></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td id="statusTV"></td>
+    </tr>
+  </table>
+  <br><br>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th id="remoteName"></th>
+    </tr>
+    <tr>
+      <th>Remote Channel</th>
+      <td>
+        <button onclick="remote.remoteChannels(0)"> 0 </button>
+        <button onclick="remote.remoteChannels(1)"> 1 </button>
+        <button onclick="remote.remoteChannels(2)"> 2 </button>
+        <button onclick="remote.remoteChannels(3)"> 3 </button>
+        <button onclick="remote.remoteChannels(4)"> 4 </button>
+        <button onclick="remote.remoteChannels(5)"> 5 </button>
+        <button onclick="remote.remoteChannels(6)"> 6 </button>
+        <button onclick="remote.remoteChannels(7)"> 7 </button>
+      </td>
+    </tr>
+    <tr>
+      <th>Remote Volume</th>
+      <td>
+        <button onclick="volumeUp()">+</button>
+        <button onclick="volumeDown()">-</button>
+      </td>
+    </tr>
+    <tr>
+      <th>On Off Tv</th>
+      <td>
+        <button onclick="remote.onOffTv()">
+          <img src="remote.jpg" style="width: 20px" alt="">
+        </button>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
